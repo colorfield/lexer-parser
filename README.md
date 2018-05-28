@@ -44,6 +44,7 @@ Then, at the project root, run
 - Install as usual `drush en lexer_parser`, there is no specific configuration.
 - On a content type, create a _Text (plain)_ or _Text (plain, long)_ field.
 - On 'Manage display', choose the 'Lexer and Parser' format.
+- Optionally choose the 'Display' option ('Result' or 'Result and calculation steps').
 - Create a node from the chosen content type and add a mathematical 
 expression (e.g. '10 + 20 - 30 + 15 * 5') on the created field.
 - On node view, the calculated expression should be visible (e.g. '75').

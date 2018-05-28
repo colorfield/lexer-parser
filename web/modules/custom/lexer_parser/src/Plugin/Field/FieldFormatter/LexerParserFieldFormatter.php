@@ -26,7 +26,7 @@ class LexerParserFieldFormatter extends FormatterBase {
    */
   public static function defaultSettings() {
     return [
-      // Implement default settings.
+      'display' => 'result_only',
     ] + parent::defaultSettings();
   }
 
@@ -35,7 +35,16 @@ class LexerParserFieldFormatter extends FormatterBase {
    */
   public function settingsForm(array $form, FormStateInterface $form_state) {
     return [
-      // Implement settings form.
+      'display' => [
+        '#title' => $this->t('Display'),
+        '#type' => 'select',
+        '#options' => [
+          'result_only' => 'Result',
+          'result_and_steps' => 'Result and calculation steps',
+        ],
+        '#default_value' => $this->getSetting('result'),
+        '#description' => $this->t('Display the result only or add the calculation steps.'),
+      ],
     ] + parent::settingsForm($form, $form_state);
   }
 
@@ -44,7 +53,8 @@ class LexerParserFieldFormatter extends FormatterBase {
    */
   public function settingsSummary() {
     $summary = [];
-    // Implement settings summary.
+    // @todo set value from key
+    $summary[] = $this->t('Display: @display', ['@display' => $this->getSetting('display')]);
     return $summary;
   }
 
@@ -55,7 +65,7 @@ class LexerParserFieldFormatter extends FormatterBase {
     $elements = [];
 
     foreach ($items as $delta => $item) {
-      $elements[$delta] = ['#markup' => $this->viewValue($item)];
+      $elements[$delta] = $this->viewValue($item);
     }
 
     return $elements;
@@ -67,13 +77,38 @@ class LexerParserFieldFormatter extends FormatterBase {
    * @param \Drupal\Core\Field\FieldItemInterface $item
    *   One field item.
    *
-   * @return string
-   *   The textual output generated.
+   * @return array
+   *   Render array for the item.
    */
   protected function viewValue(FieldItemInterface $item) {
+    $result = '';
     /** @var \Drupal\lexer_parser\LexerParserServiceInterface $lexerParser */
     $lexerParser = \Drupal::service('lexer_parser.default');
-    return $lexerParser->calculate($item->value);
+    switch ($this->getSetting('display')) {
+      case 'result_and_steps':
+        $steps = $lexerParser->calculationSteps($item->value);
+        $displaySteps = [];
+        /** @var \Fubhy\Math\Token\BaseToken $step */
+        foreach ($steps as $step) {
+          $displaySteps[] = [
+            'value' => $step->getValue(),
+            'offset' => $step->getOffset(),
+            'type' => get_class($step),
+          ];
+        }
+        $result = [
+          '#theme' => 'lexer_parser',
+          '#expression' => $item->value,
+          '#result' => $lexerParser->calculate($item->value),
+          '#calculation_steps' => $displaySteps,
+        ];
+        break;
+
+      case 'result_only':
+        $result = ['#markup' => $lexerParser->calculate($item->value)];
+        break;
+    }
+    return $result;
   }
 
 }

@@ -1,1 +1,15 @@
-<!-- Add you custom twig html here -->
+{#
+  Default theme implementation for Lexer & Parser.
+  Variables:
+  - expression: The mathematical expression to be calculated.
+  - result: The result of the calculation.
+  - calculation_steps: Array of the calculation steps.
+#}
+
+<p>{{ 'Expression'|t }}: {{ expression }}</p>
+<p>{{ 'Result'|t }}: {{ result }}</p>
+<ul>
+    {% for step in calculation_steps %}
+        <li>{{ 'Offset'|t }}: {{ step.offset }}, {{ 'Value'|t }}: {{ step.value }}, {{ 'Type'|t }}: {{ step.type }}</li>
+    {% endfor %}
+</ul>
