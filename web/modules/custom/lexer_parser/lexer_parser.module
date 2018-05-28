@@ -36,5 +36,13 @@ function lexer_parser_theme() {
       ],
       'render element' => 'children',
     ],
+    'lexer_parser_react' => [
+      'variables' => [
+        'expression' => NULL,
+        'result' => NULL,
+        'calculation_steps' => [],
+      ],
+      'render element' => 'children',
+    ],
   ];
 }

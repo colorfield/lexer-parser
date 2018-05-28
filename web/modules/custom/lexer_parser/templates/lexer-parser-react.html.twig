@@ -1,0 +1,11 @@
+{#
+  Default theme implementation for Lexer & Parser with React.
+  Variables:
+  - expression: The mathematical expression to be calculated.
+  - result: The result of the calculation.
+  - @todo calculation_steps: Array of the calculation steps.
+#}
+
+{{ attach_library('react_app/app') }}
+
+<div id="react-app-container" data-expression="{{ expression }}" data-result="{{ result }}"></div>
