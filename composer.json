@@ -33,6 +33,7 @@
         }
     ],
     "require": {
+        "php": ">=5.5.9",
         "composer/composer": "~1.0",
         "composer/installers": "^1.2",
         "cweagans/composer-patches": "^1.6",
@@ -40,7 +41,7 @@
         "drupal/console": "^1.0.2",
         "drupal/core": "~8.4",
         "drush/drush": "^9.0.0",
-        "php": ">=5.5.9",
+        "fubhy/math-php": "^1.0",
         "webflo/drupal-finder": "^1.0.0",
         "webmozart/path-util": "^2.3"
     },
