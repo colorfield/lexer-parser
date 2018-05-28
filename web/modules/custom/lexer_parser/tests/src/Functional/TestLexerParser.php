@@ -74,7 +74,7 @@ class TestLexerParser extends BrowserTestBase {
 
     $field_name = 'field_lexer_parser';
     $type = 'string';
-    $widget_type = 'default';
+    $widget_type = 'default'; // @fixme
     $formatter_type = 'lexer_parser_field_formatter';
     // Add the lexer parser field to the entity test.
     $this->fieldStorage = FieldStorageConfig::create([
