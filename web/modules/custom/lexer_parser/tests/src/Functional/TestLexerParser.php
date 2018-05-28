@@ -74,7 +74,6 @@ class TestLexerParser extends BrowserTestBase {
 
     $field_name = 'field_lexer_parser';
     $type = 'string';
-    $widget_type = 'default'; // @fixme
     $formatter_type = 'lexer_parser_field_formatter';
     // Add the lexer parser field to the entity test.
     $this->fieldStorage = FieldStorageConfig::create([
@@ -91,7 +90,7 @@ class TestLexerParser extends BrowserTestBase {
     ]);
     $this->field->save();
     EntityFormDisplay::load('entity_test.entity_test.default')
-      ->setComponent($field_name, ['type' => $widget_type])
+      ->setComponent($field_name)
       ->save();
     $this->displayOptions = [
       'type' => $formatter_type,
@@ -114,6 +113,7 @@ class TestLexerParser extends BrowserTestBase {
 
   /**
    * Tests the calculate service.
+   * @todo should be moved in Kernel test
    */
   public function testCalculate() {
     // @todo
@@ -121,6 +121,8 @@ class TestLexerParser extends BrowserTestBase {
 
   /**
    * Data provider for the testCalculate() test case.
+   * @todo should be moved in Kernel test
+   *
    * @see https://github.com/fubhy/math-php/blob/master/tests/CalculatorTest.php
    */
   public function calculateProvider(){
