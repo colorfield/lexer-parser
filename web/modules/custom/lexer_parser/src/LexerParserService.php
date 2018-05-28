@@ -2,16 +2,33 @@
 
 namespace Drupal\lexer_parser;
 
+use Fubhy\Math\Calculator;
+use Fubhy\Math\Exception\IncorrectExpressionException;
+use Fubhy\Math\Exception\UnknownVariableException;
+
 /**
  * Class LexerParserService.
  */
 class LexerParserService implements LexerParserServiceInterface {
 
   /**
-   * Constructs a new LexerParserService object.
+   * {@inheritdoc}
    */
-  public function __construct() {
-
+  public function calculate($expression) {
+    $result = '';
+    if (!empty($expression)) {
+      $calc = new Calculator();
+      try {
+        $result = $calc->calculate($expression, []);
+      }
+      catch (IncorrectExpressionException $exception) {
+        \Drupal::messenger()->addError($exception->getMessage());
+      }
+      catch (UnknownVariableException $exception) {
+        \Drupal::messenger()->addError($exception->getMessage());
+      }
+    }
+    return $result;
   }
 
 }

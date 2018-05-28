@@ -1,4 +1,4 @@
-name: 'lexer_parser'
+name: 'Lexer & Parser'
 type: module
 description: 'Lexer & Parser for mathematical expressions exposed as a field formatter.'
 core: 8.x

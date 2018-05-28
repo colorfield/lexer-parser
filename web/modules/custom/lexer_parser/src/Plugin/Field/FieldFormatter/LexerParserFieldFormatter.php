@@ -2,7 +2,6 @@
 
 namespace Drupal\lexer_parser\Plugin\Field\FieldFormatter;
 
-use Drupal\Component\Utility\Html;
 use Drupal\Core\Field\FieldItemInterface;
 use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Field\FormatterBase;
@@ -15,7 +14,8 @@ use Drupal\Core\Form\FormStateInterface;
  *   id = "lexer_parser_field_formatter",
  *   label = @Translation("Lexer and Parser"),
  *   field_types = {
- *     "text"
+ *     "text",
+ *     "string"
  *   }
  * )
  */
@@ -45,7 +45,6 @@ class LexerParserFieldFormatter extends FormatterBase {
   public function settingsSummary() {
     $summary = [];
     // Implement settings summary.
-
     return $summary;
   }
 
@@ -72,9 +71,9 @@ class LexerParserFieldFormatter extends FormatterBase {
    *   The textual output generated.
    */
   protected function viewValue(FieldItemInterface $item) {
-    // The text value has no text format assigned to it, so the user input
-    // should equal the output, including newlines.
-    return nl2br(Html::escape($item->value));
+    /** @var \Drupal\lexer_parser\LexerParserServiceInterface $lexerParser */
+    $lexerParser = \Drupal::service('lexer_parser.default');
+    return $lexerParser->calculate($item->value);
   }
 
 }
