@@ -29,6 +29,10 @@ function lexer_parser_help($route_name, RouteMatchInterface $route_match) {
 function lexer_parser_theme() {
   return [
     'lexer_parser' => [
+      'variables' => [
+        'expression' => NULL,
+        'calculation_steps' => [],
+      ],
       'render element' => 'children',
     ],
   ];

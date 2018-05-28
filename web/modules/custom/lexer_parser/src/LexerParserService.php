@@ -31,4 +31,13 @@ class LexerParserService implements LexerParserServiceInterface {
     return $result;
   }
 
+  /**
+   * {@inheritdoc}
+   */
+  public function calculationSteps($expression) {
+    $stepsCalculator = new StepsCalculator();
+    $steps = $stepsCalculator->getCalculationSteps($expression);
+    return $steps;
+  }
+
 }

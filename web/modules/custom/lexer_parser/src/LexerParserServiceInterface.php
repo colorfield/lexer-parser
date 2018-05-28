@@ -18,4 +18,15 @@ interface LexerParserServiceInterface {
    */
   public function calculate($expression);
 
+  /**
+   * Returns the calculation steps of a mathematical expression.
+   *
+   * @param string $expression
+   *   The expression to calculate.
+   *
+   * @return array
+   *   The calculationSteps of the expression.
+   */
+  public function calculationSteps($expression);
+
 }
