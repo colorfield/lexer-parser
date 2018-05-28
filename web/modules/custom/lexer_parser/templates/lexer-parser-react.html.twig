@@ -3,9 +3,9 @@
   Variables:
   - expression: The mathematical expression to be calculated.
   - result: The result of the calculation.
-  - @todo calculation_steps: Array of the calculation steps.
+  - calculation_steps: Array of the calculation steps as JSON.
 #}
 
-{{ attach_library('react_app/app') }}
+{{ attach_library('lexer_parser/app') }}
 
-<div id="react-app-container" data-expression="{{ expression }}" data-result="{{ result }}"></div>
+<div id="react-app-container" data-expression="{{ expression }}" data-result="{{ result }}" data-calculation-steps="{{ calculation_steps }}"></div>

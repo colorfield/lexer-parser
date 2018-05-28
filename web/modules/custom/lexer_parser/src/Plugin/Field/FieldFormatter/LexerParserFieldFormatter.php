@@ -98,6 +98,7 @@ class LexerParserFieldFormatter extends FormatterBase {
         }
         $result = [
           // @todo provide field formatter setting for the swith to React
+          // @todo for react, pass calculation steps as json
           '#theme' => 'lexer_parser_react',
           '#expression' => $item->value,
           '#result' => $lexerParser->calculate($item->value),

@@ -49,6 +49,13 @@ Then, at the project root, run
 expression (e.g. '10 + 20 - 30 + 15 * 5') on the created field.
 - On node view, the calculated expression should be visible (e.g. '75').
 
+### React branch
+
+To display the expression and result within Reactn choose
+the 'Result and calculation steps' on the formatter.
+
+@todo display steps and animate them. 
+
 ### Tests
 
 @todo

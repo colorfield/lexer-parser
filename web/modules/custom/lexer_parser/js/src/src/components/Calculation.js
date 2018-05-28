@@ -3,14 +3,13 @@ import PropTypes from 'prop-types';
 import s from './Calculation.css';
 
 class Calculation extends React.Component {
-  constructor() {
-    super();
-    // @todo states
-  }
-
   static propTypes = {
     expression: PropTypes.string.isRequired,
     result: PropTypes.string.isRequired,
+    // steps: PropTypes.shape({
+    //   value: PropTypes.string.isRequired,
+    //   operator: PropTypes.string.isRequired,
+    // }).isRequired,
   };
 
   componentDidMount() {
@@ -22,6 +21,7 @@ class Calculation extends React.Component {
   }
 
   render() {
+    // @todo add steps
     const { expression, result } = this.props;
 
     return (
