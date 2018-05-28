@@ -1,0 +1,35 @@
+<?php
+
+/**
+ * @file
+ * Contains lexer_parser.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function lexer_parser_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the lexer_parser module.
+    case 'help.page.lexer_parser':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Lexer &amp; Parser for mathematical expressions exposed as a field formatter.') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function lexer_parser_theme() {
+  return [
+    'lexer_parser' => [
+      'render element' => 'children',
+    ],
+  ];
+}
