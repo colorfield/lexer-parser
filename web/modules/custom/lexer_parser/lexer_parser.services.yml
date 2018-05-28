@@ -1,0 +1,4 @@
+services:
+  lexer_parser.default:
+    class: Drupal\lexer_parser\LexerParserService
+    arguments: []
